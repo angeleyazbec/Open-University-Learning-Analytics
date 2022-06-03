@@ -5,8 +5,8 @@ module_presentation_length string
 
 studentInfo
 -
-code_mod_pres string FK >- courses.code_mod_pres
-id_student PK int
+unique_identifier PK string
+id_student int
 gender string
 region string
 highest_education string
@@ -16,27 +16,29 @@ num_of_previous_attempts int
 studied_credits int
 disability string
 final_results string
+code_mod_pres string FK >- courses.code_mod_pres
+
 
 assessments
 --
-code_mod_pres string FK >- courses.code_mod_pres
 id_assessment PK string
 assessment_type string
 date FLOAT
 weight FLOAT
+code_mod_pres string FK >- courses.code_mod_pres
 
 vle
 --
 id_site PK int,
-code_mod_pres string FK >- courses.code_mod_pres
 activity_type string
 week_from float
 week_to float
+code_mod_pres string FK >- courses.code_mod_pres
 
 studentAssessment
 --
 id_assessment int FK >- assessments.id_assessment
-id_student int FK >- studentInfo.id_student
+id_student int
 date_submitted int
 is_banked int
 score float
@@ -44,15 +46,20 @@ score float
 studentRegistration
 --
 code_mod_pres string FK >- courses.code_mod_pres
-id_student int FK >- studentInfo.id_student
 date_registration float
 date_unregistration float
+id_student int
+unique_identifier string FK >- studentInfo.unique_identifier
 
 studentVle
 --
 code_mod_pres string FK >- courses.code_mod_pres
-id_student int FK >- studentInfo.id_student
+unique_identifier string FK >- studentInfo.unique_identifier
+id_student int
 id_site int FK >- vle.id_site
-date float
-sum_click float 
+date FLOAT
+sum_click FLOAT
+
+
+
 
