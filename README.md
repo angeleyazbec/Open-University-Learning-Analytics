@@ -127,13 +127,19 @@ Specifying data types, primary keys, foreign keys, and other constraints. Data l
 			FROM student_info
 			WHERE final_result LIKE 'Pass'));
 
-	-- Count the number of students in each final_result category
+11. Count the number of students in each final_result category
 
-	SELECT COUNT(unique_identifier), final_result
+   a. Used "COUNT" function to count the number of students, by the student_id so we can have all instances of their final results across courses.
+   
+   b. Used "GROUP BY" clause to group the results by the number of students so we can quickly see how many students are in each category.
+   
+   b. Query listed below.
+
+	SELECT COUNT(id_student), final_result
 	FROM student_info
 	GROUP BY final_result;
 
-11. Count the number of students by region
+12. Count the number of students by region
 
    a. Used "COUNT" operator to count the number of students in each region.
    
@@ -147,8 +153,8 @@ Specifying data types, primary keys, foreign keys, and other constraints. Data l
 
 ### Conclusions and Lessons Learned
 
-1. Data wrangling is absolutely essentially for prior to import into relation databases (or any project, as a matter of fact). Relational databases, such as PostgreSQL require schemas taht follow all constriants with data keys, primary keys, and foreign keys. I ended up created some unique indetifiers for some of the tables to ensure that primary keys would, in fact, be unique across each observation. For student_info, I realized that the same student ID numbers were lsited multiple times; however, if I combined the student ID number with the course code and when the module was presented (code_mod_pres), then I would have a unique identifier necessary for a primary key. 
+1. Data wrangling is absolutely essentially for prior to import into relation databases (or any project, as a matter of fact). Relational databases, such as PostgreSQL, require schemas that follow all constriants with data keys, primary keys, and foreign keys. I ended up created some unique indetifiers for some of the tables to ensure that primary keys would, in fact, be unique across each observation. For student_info, I realized that the same student ID numbers were listed multiple times; however, if I combined the student ID number with the course code and when the module was presented (code_mod_pres), then I would have a unique identifier necessary for a primary key. 
 
 2. Schematic design is essential! Going along with my previous comment about data wrangling, I spent quite some time designing the database in my PostgreSQL server and making sure the relations between the tables were logical. Spending this time substaintially helped me design effective SQL queries.
 
-3. It may be worth repeating this exercise in a NoSQL database to compare the flexibility of the databases and ease of queries. 
+3. It may be worth repeating this exercise in a NoSQL database to compare the flexibility of the databases and ease of queries. I am also working through a machine learning model on student outcomes. I will add more on that when it is ready.
